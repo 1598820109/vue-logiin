@@ -1,0 +1,60 @@
+{
+  "imgListData": [
+    {
+      "id": "1",
+      "title": "标题",
+      "content": "内容 ",
+      "city": "城市",
+      "adrs": "地址描述",
+      "room": "文字描述",
+      "imgUrl": "图片地址 ",
+      "dataTimes": "日期",
+      "peo": "姓名",
+      "tel": "手机号",
+      "pho": "img的src地址",
+      "money": "总价格",
+      "unitprice": "单价",
+      "state": "状态",
+      "gender": "性别",
+      "tag": [
+        {
+          "tags": "标签一"
+        },
+        {
+          "tags": "标签七"
+        },
+        {
+          "tags": "标签八"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "标题",
+      "content": "内容",
+      "city": "城市",
+      "adrs": "地址描述",
+      "room": "文字描述",
+      "imgUrl": "图片地址 ",
+      "dataTimes": "日期",
+      "peo": "姓名",
+      "tel": "手机号",
+      "pho": "img的src地址",
+      "money": "总价格",
+      "unitprice": "单价",
+      "state": "状态",
+      "gender": "性别",
+      "tag": [
+        {
+          "tags": "标签一"
+        },
+        {
+          "tags": "标签七"
+        },
+        {
+          "tags": "标签八"
+        }
+      ]
+    }
+  ]
+}
