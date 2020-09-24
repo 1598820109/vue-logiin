@@ -10,9 +10,25 @@ module.exports = app =>{
     const Links = mongoose.model('Link');
     const Project = mongoose.model('Project');
 
+
     router.get('/article/init',async (req,res)=>{
         const articleList = await Article.find().populate('sorts');
         res.send(articleList);
+    })
+
+    router.get('/categories/all',async (req,res)=>{
+        const categoriesAll = await Category.find();
+        var data = [];
+
+        // 筛选分类
+        categoriesAll.forEach((obj,index)=>{
+            if(obj.parent == undefined){
+                data.push(obj)
+            }
+            return data;
+        })
+       
+        res.send(data)
     })
 
 
@@ -50,7 +66,7 @@ module.exports = app =>{
 
         res.send(archive);
     });
-
+    
     //分类数据
     router.get('/categories/list',async (req,res)=>{
         const category = await Category.findOne({

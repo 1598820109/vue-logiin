@@ -28,6 +28,7 @@
                         <el-image class="table-td-thumb" :src="scope.row.logoUrl" :preview-src-list="[scope.row.logoUrl]"></el-image>
                     </template>
                 </el-table-column>
+                <el-table-column label="链接类名" align="left" prop="iconClassName"></el-table-column>
                 <el-table-column label="链接地址" align="left" prop="herf"></el-table-column>
                 <el-table-column prop="date" align="center" label="注册时间" width="120"></el-table-column>
                 <el-table-column label="操作" width="180" align="center">
@@ -56,10 +57,14 @@
                     </el-upload>
                 </el-form-item>
 
-                <el-form-item label="用户名">
+                <el-form-item label="链接类名">
+                    <el-input v-model="model.iconClassName"></el-input>
+                </el-form-item>
+
+                <el-form-item label="链接名字">
                     <el-input v-model="model.name"></el-input>
                 </el-form-item>
-                <el-form-item label="地址">
+                <el-form-item label="链接地址">
                     <el-input v-model="model.herf"></el-input>
                 </el-form-item>
             </el-form>

@@ -103,27 +103,21 @@
         <!-- 编辑弹出框 -->
 
         <!-- 修改密码弹出框 -->
-        <el-dialog title="密码" :visible.sync="editPassword" width="50%">
-           <el-steps :active="active" finish-status="success">
-                <el-step title="输入新密码"></el-step>
-                <el-step title="再次输入密码"></el-step>
-                <el-step title="修改完成"></el-step>
-            </el-steps>
-
-            <el-form :model="model" status-icon :rules="rules" ref="model"  label-position="top" label-width="100px">
-                <el-form-item v-if="active === 0" label="新密码" prop="password">
-                    <el-input type="text" v-model="model.password"></el-input>
+        <el-dialog title="修改密码" :visible.sync="editPassword" width="30%">
+            <el-form :model="model" status-icon :rules="rules" ref="model" label-width="70px">
+                <el-form-item label="新密码"  prop="password" >
+                    <el-input v-model="model.password"  autocomplete="off" show-password clearable ></el-input>
                 </el-form-item>
 
-                <el-form-item v-else-if="active === 1"  label="重复密码" prop="checkPassword">
-                    <el-input type="text" v-model="model.checkPassword"></el-input>
+                <el-form-item label="重复密码"  prop="checkPassword" >
+                    <el-input v-model="model.checkPassword" autocomplete="off" show-password clearable ></el-input>
                 </el-form-item>
-
-                <el-button style="margin-top: 12px;" @click="next('model')" v-show="showActive">{{active!=2?'下一步':'确认修改'}}</el-button>
             </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="editPassword = false;getreload()">取 消</el-button>
+                <el-button type="primary" @click="savePassword('model')">确 定</el-button>
+            </span>
         </el-dialog>
-        <!-- 修改密码弹出框 -->
-
     </div>
 </template>
 
@@ -132,9 +126,8 @@ export default {
     name: 'basetable',
     inject: ['reload'],
     data(){
-
         var password = (rule, value, callback) => {
-                if (value === '') {
+                if (value ==null) {
                     callback(new Error('请输入密码'));
                 }else if(value.length >12 || value.length < 6){
                     callback(new Error('密码长度6 ~ 12 之间'));
@@ -147,7 +140,7 @@ export default {
         };
 
         var checkPassword = (rule, value, callback) => {
-                if (value === '') {
+                if (value ==null) {
                     callback(new Error('请再次输入密码'));
                 } else if (value !== this.model.password) {
                     callback(new Error('两次输入密码不一致!'));
@@ -305,6 +298,7 @@ export default {
                 this.editVisible = true;
                 console.log(this.model._id);
                 const res = await this.$http.get(`rest/logins/${this.model._id}`);
+                console.log(res)
         },
         // 保存编辑
         async saveEdit(row) {
@@ -322,6 +316,7 @@ export default {
                     return false;
                 }
             });
+
         },
 
         // 修改密码
@@ -330,56 +325,28 @@ export default {
             // model绑定row
             this.model = row;
             this.editPassword = true;
+            // 请求接口'
+            const res = await this.$http.get(`/rest/logins/${this.model._id}`)
             console.log(row)
-            // 请求接口
-            const res = await this.$http.get(`rest/logins/${this.model._id}`)
         },
 
-        async next(row) {
-            this.$refs[row].validate(async (valid)=>{
-                if(valid){
-                    this.active++;
-                    if(this.active == 2){
-                        this.$confirm('确认修改密码', '确认信息', {
-                            distinguishCancelAndClose: true,
-                            confirmButtonText: '保存',
-                            cancelButtonText: '放弃修改'
-                            })
-                            .then(async() => {
-                                this.active++;
-                                // 关闭下一步按钮
-                                this.showActive = false;
-                                // 关闭弹窗
-                                this.editPassword = false;
-                                // 刷新
-                                this.reload();   
-                                // 请求服务器 更新密码
-                                const res = await this.$http.put(`rest/logins/${this.model._id}`,this.model.password);
-                                // 刷新列表数据
-                                this.getData();
-                                // 成功弹窗
-                                this.$message({
-                                type: 'success',
-                                     message: '修改成功'
-                                });
-                            })
-                            .catch(active => {
-                                this.active = 1;
-                                this.$message({
-                                type: 'info',
-                                message: active === 'cancel'
-                                    ? '放弃保存并离开页面'
-                                    : '停留在当前页面'
-                                })
-                        });
-                    }
-             
-                }else{
-                    console.log('error submit!!')
+        // 保存密码
+        async savePassword(row){
+            this.$refs[row].validate(async (valid) => {
+                if (valid) {
+                    const res = await this.$http.put(`/rest/logins/${this.model._id}`,this.model);
+                    this.$message.success({
+                        message:'密码修改成功'
+                    })
+                    this.editPassword = false;
+                    this.getData();
+                } else {
+                    console.log('error submit!!');
                     return false;
                 }
-            })
+            });
         },
+
         // 分页导航
         handlePageChange(val) {
             this.$set(this.query, 'pageIndex', val);

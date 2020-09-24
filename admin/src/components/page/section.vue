@@ -23,6 +23,10 @@
               </el-upload>
           </el-form-item>
 
+          <el-form-item label="友联类名" title="i  classname名字">
+            <el-input v-model="model.iconClassName"></el-input>
+          </el-form-item>
+
           <el-form-item label="友链名称">
             <el-input v-model="model.name"></el-input>
           </el-form-item>

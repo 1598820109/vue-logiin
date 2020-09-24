@@ -27,7 +27,7 @@
         height: 100vh;
         background-repeat: no-repeat;
         background-size: 110% 140% ;
-        background-image:url(../../public/image/404.jpg);
+        /* background-image:url(../../public/image/404.jpg); */
 
     }
 

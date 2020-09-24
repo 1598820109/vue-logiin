@@ -7,6 +7,8 @@ const schema = mongoose.Schema({
 
     logoUrl: { type: String },
 
+    iconClassName:{type:String},
+
     date: {
         type:String,
 
