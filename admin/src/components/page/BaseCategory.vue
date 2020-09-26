@@ -54,7 +54,7 @@
                 this.reload();
                 this.$router.push('table')
                 this.$message({
-                    type: "scuccess",
+                    type: "success",
                     message: "添加成功",
                 })
             },

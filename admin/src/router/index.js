@@ -20,86 +20,58 @@ const router = new Router({
                     meta: { title: '系统首页' }
                 },
                 {
-                    path: '/icon',
-                    component: () => import(/* webpackChunkName: "icon" */ '../components/page/Icon.vue'),
-                    meta: { title: '自定义图标' }
-                },
-                {
-                    path: '/table',
-                    component: () => import(/* webpackChunkName: "table" */ '../components/page/BaseTable.vue'),
-                    meta: { title: '文章列表' }
-                },
-                {
-                    path: '/tabs',
-                    component: () => import(/* webpackChunkName: "tabs" */ '../components/page/Tabs.vue'),
-                    meta: { title: 'tab选项卡' }
+                    path: '/images',
+                    component: () => import(/* webpackChunkName: "donate" */ '../components/page/BaseImage.vue'),
+                    meta: { title: '添加图片' }
                 },
 
                 {
-                    path: '/section',
-                    component: () => import(/* webpackChunkName: "tabs" */ '../components/page/section.vue'),
-                    meta: { title: 'tab选项卡' }
+                    path: '/imagelist',
+                    component: () => import(/* webpackChunkName: "table" */ '../components/page/BaseImageList.vue'),
+                    meta: { title: '图片列表' }
+                },
+                {
+                    path: '/categories',
+                    component: () => import(/* webpackChunkName: "donate" */ '../components/page/BaseCategory.vue'),
+                    meta: { title: '添加分类' }
+                },
+
+                {
+                    path: '/categorylist',
+                    component: () => import(/* webpackChunkName: "table" */ '../components/page/BaseCategoryList.vue'),
+                    meta: { title: '分类列表' }
+                },
+
+                {
+                    path: '/articles',
+                    component: () => import(/* webpackChunkName: "form" */ '../components/page/BaseArticle.vue'),
+                    meta: { title: '添加文章' }
+                },
+
+                {
+                    path: '/articles/edit/:id',
+                    component: () => import(/* webpackChunkName: "form" */ '../components/page/BaseArticle.vue'),
+                    props: true,
+                    meta: { title: '修改文章' }
+                },
+                {
+                    path: '/articlelist',
+                    component: () => import(/* webpackChunkName: "tabs" */ '../components/page/BaseArticleList.vue'),
+                    meta: { title: '文章列表' }
+                },
+
+                {
+                    path: '/link',
+                    component: () => import(/* webpackChunkName: "tabs" */ '../components/page/BaseLink.vue'),
+                    meta: { title: '添加友链' }
                 },
 
                 {
                     path: '/linklist',
-                    component: () => import(/* webpackChunkName: "tabs" */ '../components/page/Linklist.vue'),
-                    meta: { title: 'tab选项卡' }
+                    component: () => import(/* webpackChunkName: "tabs" */ '../components/page/BaseLinklist.vue'),
+                    meta: { title: '友链列表' }
                 },
 
-                {
-                    path: '/form',
-                    component: () => import(/* webpackChunkName: "form" */ '../components/page/BaseForm.vue'),
-                    meta: { title: '基本表单' }
-                },
-                {
-                    path: '/form/edit/:id',
-                    component: () => import(/* webpackChunkName: "form" */ '../components/page/BaseForm.vue'),
-                    props: true,
-                    meta: { title: '基本表单' }
-                },
-                {
-                    // 富文本编辑器组件
-                    path: '/editor',
-                    component: () => import(/* webpackChunkName: "editor" */ '../components/page/VueEditor.vue'),
-                    meta: { title: '富文本编辑器' }
-                },
-                {
-                    // markdown组件
-                    path: '/markdown',
-                    component: () => import(/* webpackChunkName: "markdown" */ '../components/page/Markdown.vue'),
-                    meta: { title: 'markdown编辑器' }
-                },
-                {
-                    // 图片上传组件
-                    path: '/upload',
-                    component: () => import(/* webpackChunkName: "upload" */ '../components/page/Upload.vue'),
-                    meta: { title: '文件上传' }
-                },
-                {
-                    // vue-schart组件
-                    path: '/charts',
-                    component: () => import(/* webpackChunkName: "chart" */ '../components/page/BaseCharts.vue'),
-                    meta: { title: 'schart图表' }
-                },
-                {
-                    // 拖拽列表组件
-                    path: '/drag',
-                    component: () => import(/* webpackChunkName: "drag" */ '../components/page/DragList.vue'),
-                    meta: { title: '拖拽列表' }
-                },
-                {
-                    // 拖拽Dialog组件
-                    path: '/dialog',
-                    component: () => import(/* webpackChunkName: "dragdialog" */ '../components/page/DragDialog.vue'),
-                    meta: { title: '拖拽弹框' }
-                },
-                {
-                    // 国际化组件
-                    path: '/i18n',
-                    component: () => import(/* webpackChunkName: "i18n" */ '../components/page/I18n.vue'),
-                    meta: { title: '国际化' }
-                },
                 {
                     // 权限页面
                     path: '/permission',
@@ -116,20 +88,13 @@ const router = new Router({
                     component: () => import(/* webpackChunkName: "403" */ '../components/page/403.vue'),
                     meta: { title: '403' }
                 },
-                {
-                    path: '/donate',
-                    component: () => import(/* webpackChunkName: "donate" */ '../components/page/Donate.vue'),
-                    meta: { title: '支持作者' }
-                },
+
                 {
                     path: '/myself',
                     component: () => import(/* webpackChunkName: "Basemyself" */ '../components/page/Basemyself.vue'),
                     meta: { title: '个人主页' }
                 },
-                {
-                    path: '/articles/baselist',
-                    component: () => import(/* webpackChunkName: "BaseList" */ '../components/page/BaseList.vue'),
-                },
+
                 {
                     path: '/project',
                     component: () => import(/* webpackChunkName: "BaseList" */'../components/page/BaseProject.vue'),
@@ -158,7 +123,7 @@ const router = new Router({
         {
             path: '/login',
             component: () => import(/* webpackChunkName: "login" */ '../components/page/Login.vue'),
-            meta: { title: '登录' , isPublic:true}
+            meta: { title: '登录', isPublic: true }
         },
         {
             path: '*',
@@ -169,7 +134,7 @@ const router = new Router({
 
 // 路由守卫
 router.beforeEach((to, from, next) => {
-    if(!to.meta.isPublic && !localStorage.token){
+    if (!to.meta.isPublic && !localStorage.token) {
         return next('/login')
     }
     next();

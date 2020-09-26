@@ -9,6 +9,7 @@ module.exports = app =>{
     const Article = mongoose.model('Article');
     const Links = mongoose.model('Link');
     const Project = mongoose.model('Project');
+    const Image = mongoose.model('Image')
 
 
     router.get('/article/init',async (req,res)=>{
@@ -106,6 +107,12 @@ module.exports = app =>{
     router.get('/links/list',async (req,res)=>{
          const links = await Links.find();
          res.send(links);
+    })
+
+    // 轮播图片
+    router.get('/images/list',async(req,res)=>{
+        const image = await Image.find();
+        res.send(image)
     })
 
     app.use('/web/api',router);
